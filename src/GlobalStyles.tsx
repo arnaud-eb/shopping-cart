@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
     /*
@@ -91,9 +91,9 @@ p {
     line-height: 1;
   }
 }
-/* more global css */
+`;
 
-.btn {
+const Button = styled.button`
   text-transform: uppercase;
   background: var(--clr-primary);
   color: var(--clr-white);
@@ -106,11 +106,13 @@ p {
   border: none;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-.btn:hover {
-  color: var(--clr-primary);
-  background: var(--clr-primary-light);
-}
+
+  :hover {
+    color: var(--clr-primary);
+    background: var(--clr-primary-light);
+  }
 `;
 
 export default GlobalStyles;
+
+export { Button };
