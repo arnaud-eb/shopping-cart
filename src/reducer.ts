@@ -1,7 +1,7 @@
 import { CartStateType } from "./context";
 
 type BasicCartAction = {
-  type: "INC" | "DEC";
+  type: "INC" | "DEC" | "REMOVE";
   payload: number;
 };
 type ClearCartAction = {
@@ -33,6 +33,11 @@ const cartReducer = (
         return item;
       });
       return { ...state, cartItems: decCartItems };
+    case "REMOVE":
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item.id !== action.payload),
+      };
     case "CLEAR":
       return { ...state, cartItems: [] };
     default:
