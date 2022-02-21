@@ -68,14 +68,20 @@ const AmountBtn = styled.button`
 `;
 
 function CartItem({ id, title, price, img, amount }: CartItemProps) {
-  const { increase, decrease } = useCartContext();
+  const { increase, decrease, remove } = useCartContext();
   return (
     <CartItemContainer>
       <CartItemImg src={img} alt={title} />
       <div>
         <h4>{title}</h4>
         <ItemPrice>${price}</ItemPrice>
-        <RemoveBtn>remove</RemoveBtn>
+        <RemoveBtn
+          onClick={() => {
+            remove(id);
+          }}
+        >
+          remove
+        </RemoveBtn>
       </div>
       <div>
         <AmountBtn

@@ -13,6 +13,7 @@ type IdType = typeof data[number]["id"];
 interface CartContextType extends CartStateType {
   increase: (id: IdType) => void;
   decrease: (id: IdType) => void;
+  remove: (id: IdType) => void;
   clear: () => void;
 }
 
@@ -40,6 +41,10 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: "DEC", payload: id });
   };
 
+  const remove = (id: IdType) => {
+    dispatch({ type: "REMOVE", payload: id });
+  };
+
   const clear = () => {
     dispatch({ type: "CLEAR" });
   };
@@ -49,7 +54,9 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <CartContext.Provider value={{ ...state, increase, decrease, clear }}>
+    <CartContext.Provider
+      value={{ ...state, increase, decrease, remove, clear }}
+    >
       {children}
     </CartContext.Provider>
   );
