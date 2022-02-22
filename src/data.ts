@@ -1,3 +1,5 @@
+export type CartItemsType = typeof data;
+
 const data = [
   {
     id: 1,
