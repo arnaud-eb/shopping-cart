@@ -1,7 +1,7 @@
-import * as React from "react";
 import styled from "styled-components";
 
-import { useCartContext } from "../context";
+import useActions from "../use-actions";
+import * as actions from "../actions";
 import data from "../data";
 
 type CartItemProps = typeof data[number];
@@ -68,7 +68,7 @@ const AmountBtn = styled.button`
 `;
 
 function CartItem({ id, title, price, img, amount }: CartItemProps) {
-  const { increase, decrease, remove } = useCartContext();
+  const { increase, decrease, remove } = useActions(actions);
   return (
     <CartItemContainer>
       <CartItemImg src={img} alt={title} />
