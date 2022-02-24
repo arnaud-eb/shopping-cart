@@ -1,7 +1,7 @@
-import * as React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { useCartContext } from "../context";
+import { CartStateType } from "../reducer";
 
 const NavbarContainer = styled.nav`
   background: var(--clr-primary);
@@ -52,7 +52,9 @@ const AmountContainer = styled.div`
 `;
 
 const Navbar = () => {
-  const { cartItems } = useCartContext();
+  const cartItems = useSelector<CartStateType, CartStateType["cartItems"]>(
+    (state) => state.cartItems
+  );
   const nbrItems = cartItems.reduce((sum, item) => sum + item.amount, 0);
   return (
     <NavbarContainer>

@@ -1,4 +1,14 @@
-import { CartStateType } from "./context";
+import { CartItemsType } from "./data";
+
+export type CartStateType = {
+  cartItems: CartItemsType;
+  loading: boolean;
+};
+
+const initialState: CartStateType = {
+  cartItems: [],
+  loading: true,
+};
 
 type BasicCartAction = {
   type: "INC" | "DEC" | "REMOVE";
@@ -13,7 +23,7 @@ type FetchCartAction = {
 };
 
 const cartReducer = (
-  state: CartStateType,
+  state: CartStateType = initialState,
   action: BasicCartAction | ClearCartAction | FetchCartAction
 ) => {
   switch (action.type) {

@@ -1,10 +1,13 @@
 import * as React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import CartItem from "./CartItem";
 import { Button } from "../GlobalStyles";
+import { CartStateType } from "../reducer";
 
-import { useCartContext } from "../context";
+import * as actions from "../actions";
+import useActions from "../use-actions";
 
 const CartContainer = styled.section`
   min-height: calc(100vh - 120px);
@@ -66,11 +69,15 @@ const ClearBtn = styled(Button)`
 `;
 
 function Cart() {
-  const { cartItems, clear } = useCartContext();
+  const { clear } = useActions(actions);
+  const cartItems = useSelector<CartStateType, CartStateType["cartItems"]>(
+    (state) => state.cartItems
+  );
   const total = cartItems.reduce(
     (sum, item) => sum + item.amount * item.price,
     0
   );
+
   return (
     <CartContainer>
       <Header>
