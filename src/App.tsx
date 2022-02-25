@@ -1,14 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 
-import { CartStateType } from "./reducer";
 import data from "./data";
-import * as actions from "./actions";
-import useActions from "./use-actions";
+import useCart from "./use-cart";
 
 const Loading = styled.h1`
   text-align: center;
@@ -16,10 +13,7 @@ const Loading = styled.h1`
 `;
 
 const App = () => {
-  const loading = useSelector<CartStateType, CartStateType["loading"]>(
-    (state) => state.loading
-  );
-  const { fetch } = useActions(actions);
+  const { loading, fetch } = useCart();
 
   React.useEffect(() => {
     fetch(data);
