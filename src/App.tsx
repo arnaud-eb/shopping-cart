@@ -19,7 +19,7 @@ const App = () => {
     fetch(data);
     const time = setTimeout(() => fetch(data), 100);
     return () => clearTimeout(time);
-  }, [fetch]);
+  }, []);
 
   return (
     <main>
