@@ -1,23 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-import Navbar from "./components/Navbar";
-import Cart from "./components/Cart";
+import NavbarContainer from "../containers/NavbarContainer";
+import CartContainer from "../containers/CartContainer";
 
-import data from "./store/data";
-import useCart from "./store/use-cart";
+interface AppPropsType {
+  loading: boolean;
+  fetch: () => void;
+}
 
 const Loading = styled.h1`
   text-align: center;
   margin-top: 5rem;
 `;
 
-const App = () => {
-  const { loading, fetch } = useCart();
-
+const App = ({ loading, fetch }: AppPropsType) => {
   React.useEffect(() => {
-    fetch(data);
-    const time = setTimeout(() => fetch(data), 100);
+    const time = setTimeout(() => fetch(), 100);
     return () => clearTimeout(time);
   }, []);
 
@@ -27,8 +26,8 @@ const App = () => {
         <Loading>loading...</Loading>
       ) : (
         <React.Fragment>
-          <Navbar />
-          <Cart />
+          <NavbarContainer />
+          <CartContainer />
         </React.Fragment>
       )}
     </main>

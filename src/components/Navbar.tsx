@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-import useCart from "../store/use-cart";
+interface NavbarPropsType {
+  nbrItems: number;
+}
 
 const NavbarContainer = styled.nav`
   background: var(--clr-primary);
@@ -50,9 +52,7 @@ const AmountContainer = styled.div`
   }
 `;
 
-const Navbar = () => {
-  const { cartItems } = useCart();
-  const nbrItems = cartItems.reduce((sum, item) => sum + item.amount, 0);
+const Navbar = ({ nbrItems }: NavbarPropsType) => {
   return (
     <NavbarContainer>
       <NavCenter>

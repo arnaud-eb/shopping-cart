@@ -1,10 +1,16 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import CartItem from "./CartItem";
+import CartItemContainer from "../containers/CartItemContainer";
 import { Button } from "../GlobalStyles";
 
-import useCart from "../store/use-cart";
+import { CartStateType } from "../store/reducer";
+
+interface CartPropsType {
+  clear: () => void;
+  cartItems: CartStateType["cartItems"];
+  total: number;
+}
 
 const CartContainer = styled.section`
   min-height: calc(100vh - 120px);
@@ -65,13 +71,7 @@ const ClearBtn = styled(Button)`
   }
 `;
 
-function Cart() {
-  const { clear, cartItems } = useCart();
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.amount * item.price,
-    0
-  );
-
+function Cart({ clear, cartItems, total }: CartPropsType) {
   return (
     <CartContainer>
       <Header>
@@ -83,7 +83,7 @@ function Cart() {
             {cartItems
               .filter((item) => item.amount > 0)
               .map((item) => (
-                <CartItem key={item.id} {...item} />
+                <CartItemContainer key={item.id} {...item} />
               ))}
           </div>
           <Footer>

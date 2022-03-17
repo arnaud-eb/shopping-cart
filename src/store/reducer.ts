@@ -10,14 +10,14 @@ const initialState: CartStateType = {
   loading: true,
 };
 
-type BasicCartAction = {
+export type BasicCartAction = {
   type: "INC" | "DEC" | "REMOVE";
   payload: number;
 };
-type ClearCartAction = {
+export type ClearCartAction = {
   type: "CLEAR";
 };
-type FetchCartAction = {
+export type FetchCartAction = {
   type: "FETCH";
   payload: CartStateType["cartItems"];
 };
