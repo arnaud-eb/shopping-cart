@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import data from "../data";
-import useCart from "../use-cart";
+import data from "../store/data";
+import useCart from "../store/use-cart";
 
 type CartItemProps = typeof data[number];
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import useCart from "../use-cart";
+import useCart from "../store/use-cart";
 
 const NavbarContainer = styled.nav`
   background: var(--clr-primary);

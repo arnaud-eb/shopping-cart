@@ -4,7 +4,7 @@ import styled from "styled-components";
 import CartItem from "./CartItem";
 import { Button } from "../GlobalStyles";
 
-import useCart from "../use-cart";
+import useCart from "../store/use-cart";
 
 const CartContainer = styled.section`
   min-height: calc(100vh - 120px);

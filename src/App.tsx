@@ -4,8 +4,8 @@ import styled from "styled-components";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 
-import data from "./data";
-import useCart from "./use-cart";
+import data from "./store/data";
+import useCart from "./store/use-cart";
 
 const Loading = styled.h1`
   text-align: center;
