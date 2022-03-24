@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import Navbar from "../components/Navbar";
 
 import { CartStateType } from "../store/reducer";
+import { selectNbrItems } from "../store/selectors";
 
 const mapStateToProps = (state: CartStateType) => {
-  const nbrItems = state.cartItems.reduce((sum, item) => sum + item.amount, 0);
+  const nbrItems = selectNbrItems(state);
   return {
     nbrItems,
   };
