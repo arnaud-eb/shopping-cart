@@ -1,10 +1,12 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import data from "../store/data";
 import { increase, decrease, remove } from "../store/cartItemsSlice";
+import { IState } from "../store/selectors";
 
-type CartItemProps = typeof data[number];
+type CartItemType = typeof data[number];
+type CartItemProps = { itemId: number };
 
 const CartItemContainer = styled.article`
   display: grid;
@@ -67,7 +69,11 @@ const AmountBtn = styled.button`
   }
 `;
 
-function CartItem({ id, title, price, img, amount }: CartItemProps) {
+function CartItem({ itemId }: CartItemProps) {
+  const cartItem = useSelector<IState, CartItemType | undefined>((state) => {
+    return state.cartItems.find((item) => item.id === itemId);
+  });
+  const { id, title, price, img, amount } = cartItem!;
   const dispatch = useDispatch();
   return (
     <CartItemContainer>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CartItem from "./CartItem";
 import { Button } from "../GlobalStyles";
 
-import { selectCartItems } from "../store/cartItemsSlice";
+import { selectTotal, selectCartItems } from "../store/selectors";
 import { clear } from "../store/cartItemsSlice";
 
 const CartContainer = styled.section`
@@ -68,12 +68,9 @@ const ClearBtn = styled(Button)`
 `;
 
 function Cart() {
+  const total = useSelector(selectTotal);
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.amount * item.price,
-    0
-  );
 
   return (
     <CartContainer>
@@ -86,7 +83,7 @@ function Cart() {
             {cartItems
               .filter((item) => item.amount > 0)
               .map((item) => (
-                <CartItem key={item.id} {...item} />
+                <CartItem key={item.id} itemId={item.id} />
               ))}
           </div>
           <Footer>
