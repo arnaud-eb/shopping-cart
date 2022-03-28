@@ -1,7 +1,8 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import data from "../data";
-import useCart from "../use-cart";
+import data from "../store/data";
+import { increase, decrease, remove } from "../store/cartItemsSlice";
 
 type CartItemProps = typeof data[number];
 
@@ -67,7 +68,7 @@ const AmountBtn = styled.button`
 `;
 
 function CartItem({ id, title, price, img, amount }: CartItemProps) {
-  const { increase, decrease, remove } = useCart();
+  const dispatch = useDispatch();
   return (
     <CartItemContainer>
       <CartItemImg src={img} alt={title} />
@@ -76,7 +77,7 @@ function CartItem({ id, title, price, img, amount }: CartItemProps) {
         <ItemPrice>${price}</ItemPrice>
         <RemoveBtn
           onClick={() => {
-            remove(id);
+            dispatch(remove(id));
           }}
         >
           remove
@@ -85,7 +86,7 @@ function CartItem({ id, title, price, img, amount }: CartItemProps) {
       <div>
         <AmountBtn
           onClick={() => {
-            increase(id);
+            dispatch(increase(id));
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -95,7 +96,7 @@ function CartItem({ id, title, price, img, amount }: CartItemProps) {
         <AmountContainer>{amount}</AmountContainer>
         <AmountBtn
           onClick={() => {
-            decrease(id);
+            dispatch(decrease(id));
           }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

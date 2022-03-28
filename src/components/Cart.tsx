@@ -1,10 +1,12 @@
 import * as React from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 import CartItem from "./CartItem";
 import { Button } from "../GlobalStyles";
 
-import useCart from "../use-cart";
+import { selectCartItems } from "../store/cartItemsSlice";
+import { clear } from "../store/cartItemsSlice";
 
 const CartContainer = styled.section`
   min-height: calc(100vh - 120px);
@@ -66,7 +68,8 @@ const ClearBtn = styled(Button)`
 `;
 
 function Cart() {
-  const { clear, cartItems } = useCart();
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useDispatch();
   const total = cartItems.reduce(
     (sum, item) => sum + item.amount * item.price,
     0
@@ -92,7 +95,7 @@ function Cart() {
               <h4>total</h4>
               <h4>${total.toFixed(2)}</h4>
             </CartTotal>
-            <ClearBtn onClick={clear}>clear cart</ClearBtn>
+            <ClearBtn onClick={() => dispatch(clear())}>clear cart</ClearBtn>
           </Footer>
         </React.Fragment>
       ) : (
