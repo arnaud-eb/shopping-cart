@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { CartItemsType } from "./data";
 import { fetch } from "./cartItemsSlice";
 
 const initialState = true;
@@ -15,10 +14,5 @@ export const loadingSlice = createSlice({
     });
   },
 });
-
-export const selectLoading = (state: {
-  cartItems: CartItemsType;
-  loading: boolean;
-}) => state.loading;
 
 export default loadingSlice.reducer;
