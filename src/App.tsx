@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 
 import data from "./store/data";
-import { selectLoading } from "./store/loadingSlice";
+import { selectLoading } from "./store/selectors";
 import { fetch } from "./store/cartItemsSlice";
 
 const Loading = styled.h1`
