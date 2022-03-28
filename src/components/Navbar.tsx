@@ -1,6 +1,7 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import useCart from "../use-cart";
+import { selectCartItems } from "../store/cartItemsSlice";
 
 const NavbarContainer = styled.nav`
   background: var(--clr-primary);
@@ -51,7 +52,7 @@ const AmountContainer = styled.div`
 `;
 
 const Navbar = () => {
-  const { cartItems } = useCart();
+  const cartItems = useSelector(selectCartItems);
   const nbrItems = cartItems.reduce((sum, item) => sum + item.amount, 0);
   return (
     <NavbarContainer>

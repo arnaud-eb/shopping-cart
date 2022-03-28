@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
 
-import data from "./data";
-import useCart from "./use-cart";
+import data from "./store/data";
+import { selectLoading } from "./store/loadingSlice";
+import { fetch } from "./store/cartItemsSlice";
 
 const Loading = styled.h1`
   text-align: center;
@@ -13,11 +15,11 @@ const Loading = styled.h1`
 `;
 
 const App = () => {
-  const { loading, fetch } = useCart();
+  const loading = useSelector(selectLoading);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    fetch(data);
-    const time = setTimeout(() => fetch(data), 100);
+    const time = setTimeout(() => dispatch(fetch(data)), 100);
     return () => clearTimeout(time);
   }, []);
 
