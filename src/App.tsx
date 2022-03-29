@@ -21,7 +21,7 @@ const App = () => {
   React.useEffect(() => {
     const time = setTimeout(() => dispatch(fetch(data)), 100);
     return () => clearTimeout(time);
-  }, []);
+  }, [dispatch]);
 
   return (
     <main>
