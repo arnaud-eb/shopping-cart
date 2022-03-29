@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import data from "../store/data";
 import { increase, decrease, remove } from "../store/cartItemsSlice";
-import { IState } from "../store/selectors";
+import { RootState } from "../store";
 
 type CartItemType = typeof data[number];
 type CartItemProps = { itemId: number };
@@ -70,7 +70,7 @@ const AmountBtn = styled.button`
 `;
 
 function CartItem({ itemId }: CartItemProps) {
-  const cartItem = useSelector<IState, CartItemType | undefined>((state) => {
+  const cartItem = useSelector<RootState, CartItemType | undefined>((state) => {
     return state.cartItems.find((item) => item.id === itemId);
   });
   const { id, title, price, img, amount } = cartItem!;

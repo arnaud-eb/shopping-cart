@@ -1,8 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { CartItemsType } from "./data";
 
-const initialState = [] as CartItemsType;
+const initialState: CartItemsType = [];
 
 export const cartItemsSlice = createSlice({
   name: "cartItems",
@@ -11,15 +11,15 @@ export const cartItemsSlice = createSlice({
     clear: (state) => {
       state.splice(0);
     },
-    increase: (state, action) => {
+    increase: (state, action: PayloadAction<number>) => {
       const cartItem = state.find((item) => item.id === action.payload);
       if (typeof cartItem !== "undefined") cartItem.amount += 1;
     },
-    decrease: (state, action) => {
+    decrease: (state, action: PayloadAction<number>) => {
       const cartItem = state.find((item) => item.id === action.payload);
       if (typeof cartItem !== "undefined") cartItem.amount -= 1;
     },
-    remove: (state, action) => {
+    remove: (state, action: PayloadAction<number>) => {
       const cartItemIndex = state.findIndex(
         (item) => item.id === action.payload
       );
@@ -27,7 +27,7 @@ export const cartItemsSlice = createSlice({
         state.splice(cartItemIndex, 1);
       }
     },
-    fetch: (state, action) => {
+    fetch: (state, action: PayloadAction<CartItemsType>) => {
       state.splice(0, state.length, ...action.payload);
     },
   },
